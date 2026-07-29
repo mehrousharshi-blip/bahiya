@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Bhaiya! ✨</title>
+    <!-- Tailwind CDN for Premium Layout & Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#05010d] text-white min-h-screen font-sans overflow-hidden relative select-none selection:bg-purple-500/30">
 
+    <!-- Cinematic Background Glowing Orbs -->
+    <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-purple-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-pink-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <!-- Background Audio Resource -->
+    <audio id="bg-audio" src="birthday.mp3" loop></audio>
+
+    <!-- Luxury Floating Music Controller -->
+    <button id="music-btn" class="fixed top-6 right-6 z-50 px-5 py-2.5 rounded-full border border-white/10 backdrop-blur-md flex items-center gap-2 text-sm bg-white/5 hover:bg-white/10 text-neutral-300 transition-all duration-300 active:scale-95">
+        <span id="music-icon">🎵</span>
+        <span id="music-text">Play Magic</span>
+    </button>
+
+    <!-- Main Dynamic Chapters Wrapper -->
+    <div class="max-w-xl mx-auto px-6 min-h-screen flex flex-col justify-center py-20 relative z-10">
+        
+        <!-- CHAPTER 1: Welcome Screen -->
+        <div id="chapter-0" class="chapter-active space-y-8 text-center transition-all duration-500">
+            <div class="relative w-24 h-24 mx-auto bg-gradient-to-tr from-purple-600 to-pink-500 rounded-full flex items-center justify-center p-0.5 shadow-xl shadow-purple-500/20">
+                <div class="w-full h-full bg-[#05010d] rounded-full flex items-center justify-center text-3xl">🐱</div>
+            </div>
+            <div class="space-y-3">
+                <span class="text-xs font-mono text-purple-400 tracking-widest uppercase block">Chapter 01 // Introduction</span>
+                <h1 class="text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-neutral-200 to-neutral-400">It's Your Special Day!</h1>
+                <p class="text-sm text-neutral-400 max-w-xs mx-auto">Tap the button below to start the premium birthday experience.</p>
+            </div>
+            <button onclick="nextChapter()" class="w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-medium text-sm shadow-lg shadow-purple-600/30 hover:brightness-110 active:scale-[0.99] transition-all">
+                Start the Celebration ✨
+            </button>
+        </div>
+
+        <!-- CHAPTER 2: Interactive Luxury Cake -->
+        <div id="chapter-1" class="chapter-hidden space-y-8 text-center transition-all duration-500">
+            <div class="space-y-2">
+                <span class="text-xs font-mono text-pink-500 tracking-widest uppercase block">Chapter 02 // Interactive Cake</span>
+                <h2 class="text-3xl font-bold">Make a Wish</h2>
+                <p class="text-sm text-neutral-400">Tap on the golden candle flames to extinguish them!</p>
+            </div>
+
+            <div class="relative py-6 flex justify-center items-center">
+                <div class="w-64 h-64 bg-gradient-to-b from-neutral-900/50 to-neutral-950 border border-white/5 rounded-3xl backdrop-blur-xl flex flex-col justify-end p-8 shadow-2xl relative overflow-hidden">
+                    <div class="absolute inset-0 bg-radial-gradient from-purple-500/5 to-transparent opacity-60 pointer-events-none"></div>
+                    
+                    <!-- Interactive Candles Deck -->
+                    <div class="flex justify-center gap-4 mb-6 relative z-10">
+                        <div class="candle w-3 h-14 bg-gradient-to-t from-purple-500 to-pink-400 rounded-full relative" onclick="extinguishCandle(this)">
+                            <div class="flame absolute top-[-18px] left-[-4px] w-5 h-5 bg-gradient-to-t from-amber-400 to-yellow-300 rounded-full shadow-[0_0_15px_#f59e0b] cursor-pointer"></div>
+                        </div>
+                        <div class="candle w-3 h-14 bg-gradient-to-t from-purple-500 to-pink-400 rounded-full relative" onclick="extinguishCandle(this)">
+                            <div class="flame absolute top-[-18px] left-[-4px] w-5 h-5 bg-gradient-to-t from-amber-400 to-yellow-300 rounded-full shadow-[0_0_15px_#f59e0b] cursor-pointer"></div>
+                        </div>
+                        <div class="candle w-3 h-14 bg-gradient-to-t from-purple-500 to-pink-400 rounded-full relative" onclick="extinguishCandle(this)">
+                            <div class="flame absolute top-[-18px] left-[-4px] w-5 h-5 bg-gradient-to-t from-amber-400 to-yellow-300 rounded-full shadow-[0_0_15px_#f59e0b] cursor-pointer"></div>
+                        </div>
+                    </div>
+
+                    <!-- Cake Tiers Layout -->
+                    <div class="space-y-1 relative z-10">
+                        <div class="w-32 h-6 bg-gradient-to-r from-pink-600 to-purple-600 rounded-md mx-auto shadow-md"></div>
+                        <div class="w-44 h-8 bg-gradient-to-r from-pink-700 via-purple-700 to-pink-700 rounded-md mx-auto shadow-lg"></div>
+                        <div class="w-56 h-10 bg-gradient-to-r from-purple-800 to-neutral-800 rounded-md mx-auto shadow-xl"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="candle-status" class="bg-white/5 border border-white/5 py-2.5 px-6 rounded-xl inline-block text-xs font-mono text-neutral-300">
+                🔥 3 Candles Remaining — Blow Them Out
+            </div>
+
+            <div class="flex gap-4">
+                <button onclick="prevChapter()" class="w-1/3 py-3.5 rounded-xl bg-white/5 border border-white/15 text-sm hover:bg-white/10 transition-all">Back</button>
+                <button id="cake-next-btn" onclick="nextChapter()" disabled class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-medium text-sm disabled:opacity-30 disabled:pointer-events-none shadow-lg shadow-purple-600/20 transition-all">Next Chapter</button>
+            </div>
+        </div>
+
+        <!-- CHAPTER 3: Scratch Card Module -->
+        <div id="chapter-2" class="chapter-hidden space-y-8 text-center transition-all duration-500">
+            <div class="space-y-2">
+                <span class="text-xs font-mono text-purple-400 tracking-widest uppercase block">Chapter 03 // Secret Card</span>
+                <h2 class="text-3xl font-bold">A Secret Wish</h2>
+                <p class="text-sm text-neutral-400">Tap on the golden panel to scratch and reveal the secret note.</p>
+            </div>
+
+            <div class="relative max-w-sm mx-auto aspect-[16/10] w-full preserve-3d cursor-pointer" id="scratch-card-box" onclick="revealScratchCard()">
+                <!-- Front Golden Cover -->
+                <div id="scratch-cover" class="absolute inset-0 bg-gradient-to-br from-amber-400 via-yellow-500 to-orange-500 rounded-2xl flex flex-col justify-center items-center shadow-xl border border-white/20 z-20 transition-all duration-500">
+                    <span class="text-2xl mb-2 animate-bounce">✨</span>
+                    <h3 class="font-bold tracking-wider text-neutral-900 text-lg uppercase">✨ Scratch Card ✨</h3>
+                    <p class="text-xs text-neutral-950/70 mt-1">Click to reveal secret note</p>
+                </div>
+                <!-- Back Secret Message Frame -->
+                <div class="absolute inset-0 bg-neutral-900 border border-white/5 rounded-2xl flex flex-col justify-center items-center p-6 text-center shadow-inner z-10">
+                    <span class="text-pink-500 text-xl mb-2">❤️</span>
+                    <p class="text-sm font-medium leading-relaxed max-w-xs text-neutral-200 italic">
+                        "Officially, you're one year older now... but don't worry, you're still not that old. 😂 I wish you endless laughter!"
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex gap-4">
+                <button onclick="prevChapter()" class="w-1/3 py-3.5 rounded-xl bg-white/5 border border-white/15 text-sm transition-all">Back</button>
+                <button id="scratch-next-btn" onclick="nextChapter()" disabled class="w-2/3 py-3.5 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-medium text-sm disabled:opacity-30 transition-all">Next Chapter</button>
+            </div>
+        </div>
+
+        <!-- CHAPTER 4: Infinite Wishes Frame Overlay -->
+        <div id="chapter-3" class="chapter-hidden space-y-8 transition-all duration-500">
+            <div class="text-center space-y-2">
+                <span class="text-xs font-mono text-purple-400 tracking-widest uppercase block">FINAL CHAPTER // UNWRAPPING</span>
+                <h2 class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-neutral-400">Wishes From Everywhere</h2>
+            </div>
+
+            <!-- Global Custom Scroll Wrapper -->
+            <div class="bg-gradient-to-b from-neutral-900/60 to-neutral-950 border border-white/10 rounded-2xl p-6 md:p-8 shadow-2xl space-y-8 max-h-[55vh] overflow-y-auto custom-scrollbar backdrop-blur-xl">
+                
+                <!-- Wish 1: English Classic Letter Layout -->
+                <div class="text-center space-y-4 border-b border-white/5 pb-6">
+                    <h3 class="text-lg font-bold tracking-wider text-purple-400 uppercase">🎉 Happy Birthday Bhaiya 🎉</h3>
+                    <div class="space-y-2 text-sm leading-relaxed text-neutral-200">
+                        <p class="font-semibold text-white text-base">Happy Birthday!</p>
+                        <p>Do you know how grateful I am to have you as my Bhaiya? 🤍</p>
+                        <p>Thank you for always being there.</p>
+                        <p className="text-amber-300">May Allah bless you with happiness, success, good health and endless smiles.</p>
+                        <p class="font-medium text-purple-300">Happy Birthday once again. 💙</p>
+                    </div>
+                </div>
+
+                <!-- Text Art Box 1 -->
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 text-center font-mono text-xs text-pink-400/80 leading-relaxed whitespace-pre">
+| ┌ ┐💗
+└ ┘APPY_🎂🎆🎉
+┌┐    🄱🄸🅁🅃🄷🄳🄰🅁🎉🎆🌌
+└┘. 🤟 🐬</div>
+
+                <!-- Poetry Block Frame -->
+                <div class="space-y-4 border-b border-white/5 pb-6 text-center">
+                    <p class="text-xl text-amber-300 font-medium tracking-wide font-serif" style="direction: rtl;">💗وہ لمحے تمہارے قدموں میں ہوں💗</p>
+                    <p class="text-xs font-mono uppercase tracking-wider text-neutral-400">May All Y◯ur *Dreams* C◯me True 🥰</p>
+                    <p class="text-xl text-amber-300 font-medium tracking-wide font-serif" style="direction: rtl;">💗خدا وہ سب کچھ تم کو دے 😻</p>
+                    <p class="text-xs font-mono uppercase tracking-wider text-neutral-400">May Y◯u Have *Always* Smile Like *TOday* 💙</p>
+                    <p class="text-xl text-amber-300 font-medium tracking-wide font-serif" style="direction: rtl;">💗جو سوچا تم نے اپنے سپنوں میں ہو 🥺-♡︎</p>
+                </div>
+
+                <!-- Text Art Box 2 -->
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-4 text-center font-mono text-xs text-cyan-400/80 space-y-1">
+                    <p>•°🎈🥂🍾°• 🤍🫶🏻</p>
+                    <p>*╔══♦•°୨୧° ᵒ ᵒ°୨୧°•♦ ══╗*</p>
+                    <p>◦ #💙💙💙═════════🖤🖤🖤 #</p>
+                    <p>┊┊┊┊┊┊┊⇣❥︎.</p>
+                    <p>||════♦•°୨୧° ᵒ ᵒ°୨୧°•♦ ══||</p>
+                </div>
+
+                <!-- Wish 2: Urdu Premium Dua Layout -->
+                <div class="bg-gradient-to-r from-purple-950/20 via-pink-950/20 to-purple-950/20 border border-purple-500/10 rounded-xl p-6 text-center space-y-4">
+                    <div class="text-lg md:text-xl text-yellow-200 leading-loose space-y-2 font-serif" style="direction: rtl;">
+                        <p>کروڑوں دعاؤں اور خوشیوں کے</p>
+                        <p>لازوال خزانے کے ساتھ</p>
+                        <p>آپ کی سالگرہ کا اور ہر آنے والا دن</p>
+                        <p>خوشیوں ،رحمتوں، اور برکتوں والا ہو</p>
+                        <p>ربِ کائنات آپ کو ڈھیروں، کامیابیاں، اور خوشیاں نصیب کرے...😍</p>
+                    </div>
+                    <p class="text-pink-400 font-bold tracking-wide" style="direction: rtl;">💗آمــیـن یا ربـــ العالمـیــن💗</p>
+                    <p class="text-sm text-neutral-200" style="direction: rtl;">😍ہمیشہ ہنستےمسکراتےرہیں</p>
+                    <p class="text-base text-cyan-300 font-semibold" style="direction: rtl;">💗💞جیو ہزاروں سال 💞💗</p>
+                </div>
+
+                <!-- Final Typography Footer -->
+                <div class="text-center space-y-3 pt-2">
+                    <p class="text-sm font-medium">Happy birthday to you 🎂🖤😍 🎈</p>
+                    <p class="text-xs text-emerald-400 leading-relaxed font-medium">
+                        Wish you a very happy and beautiful long life<br>
+                        ALLAH bless you all happiness in life<br>
+                        Ameen ✨...😻🌹🌹😍😍😍😍
+                    </p>
+                    <p class="text-xs tracking-widest text-neutral-500 pt-2">💖💖💖💖💖💖 💖🎂🎂 🎂🎂🎂</p>
+                </div>
+
+            </div>
+
+            <!-- Bottom Master Controller Controls -->
+            <div class="flex gap-4">
+                <button onclick="prevChapter()" class="w-1/3 py-4 rounded-xl bg-white/5 border border-white/15 text-sm font-medium hover:bg-white/10 transition-all">Back</button>
+                <button onclick="resetCelebration()" class="w-2/3 py-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 font-medium text-sm shadow-xl shadow-purple-600/20 hover:brightness-110 active:scale-[0.99] transition-all">
+                    Celebrate Again 🔄
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
